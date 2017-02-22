@@ -47,14 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlertProperty.cs" />
-    <Compile Include="AlertPropertyListWrapperForSubjectABTest.cs" />
+    <Compile Include="MailApi\ABTestSubject.cs" />
+    <Compile Include="MailApi\AlertProperty.cs" />
+    <Compile Include="MailApi\AlertPropertyListWrapperForSubjectABTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\TestProperties.cs" />
+    <Compile Include="Test\TestSubjectScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SubjectScripts\SubjectScript1.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
