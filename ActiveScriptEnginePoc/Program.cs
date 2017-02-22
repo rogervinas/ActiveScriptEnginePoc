@@ -4,62 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ActiveXScriptLib;
+using MailApi.Models;
 using System.Runtime.InteropServices;
 
 namespace ActiveScriptEnginePoc
 {
-    [ComVisible(true)]
-    public class AlertProperties
-    {
-        public List<AlertProperty> List { get; set; }
-
-        public AlertProperty Get(int i)
-        {
-            return List[i];
-        }
-
-        public int Count
-        {
-            get
-            {
-                return List.Count;
-            }
-        }
-    }
-
-    [ComVisible(true)]
-    public class AlertProperty
-    {
-        public long PropertyId { get; set; }
-
-        public int TransactionId { get; set; }
-
-        public string TransactionDescription { get; set; }
-
-        public string ImageMainUrl { get; set; }
-
-        public string PropertyUrl { get; set; }
-
-        public int Rooms { get; set; }
-
-        public int BathRooms { get; set; }
-
-        public int Surface { get; set; }
-
-        public decimal Price { get; set; }
-
-        public string Zone { get; set; }
-
-        public string City { get; set; }
-
-        public int PropertyType { get; set; }
-
-        public string PropertyTypeDescription { get; set; }
-
-        public int PropertySubtype { get; set; }
-
-        public string PropertySubtypeDescription { get; set; }
-    }
 
     class Program
     {
@@ -73,7 +22,7 @@ namespace ActiveScriptEnginePoc
 
                 try
                 {
-                    AlertProperties alertProperties = generateAlertProperties_2();
+                    AlertPropertyListWrapperForSubjectABTest alertProperties = generateAlertProperties_2();
 
                     String jsFunctionBodyFromKey = generateJsFunction();
 
@@ -129,9 +78,9 @@ namespace ActiveScriptEnginePoc
             return function;
         }
 
-        private static AlertProperties generateAlertProperties_1()
+        private static AlertPropertyListWrapperForSubjectABTest generateAlertProperties_1()
         {
-            AlertProperties alertProperties = new AlertProperties();
+            AlertPropertyListWrapperForSubjectABTest alertProperties = new AlertPropertyListWrapperForSubjectABTest();
             AlertProperty alertProperty = new AlertProperty();
             alertProperty.Rooms = 3;
             alertProperty.Surface = 100;
@@ -144,11 +93,11 @@ namespace ActiveScriptEnginePoc
             alertProperties.List.Add(alertProperty);
             return alertProperties;
         }
-        
-        
-        private static AlertProperties generateAlertProperties_2()
+
+
+        private static AlertPropertyListWrapperForSubjectABTest generateAlertProperties_2()
         {
-            AlertProperties alertProperties = new AlertProperties();
+            AlertPropertyListWrapperForSubjectABTest alertProperties = new AlertPropertyListWrapperForSubjectABTest();
             AlertProperty alertProperty_1 = new AlertProperty();
             alertProperty_1.Rooms = 4;
             alertProperty_1.Surface = 200;
