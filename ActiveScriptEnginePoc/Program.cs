@@ -22,7 +22,7 @@ namespace ActiveScriptEnginePoc
 
                 try
                 {
-                    AlertPropertyListWrapperForSubjectABTest alertProperties = generateAlertProperties_2();
+                    AlertPropertyListWrapperForSubjectABTest alertProperties = generateAlertProperties_1();
 
                     String jsFunctionBodyFromKey = generateJsFunction();
 
@@ -65,7 +65,11 @@ namespace ActiveScriptEnginePoc
                 + "if(matches.Get(0).Surface>0){"
 	            + "subject=subject.replace('[Surface]',matches.Get(0).Surface);"
                 + "}else{"
-	            + "subject=subject.replace(' [Surface] m2','');"
+	            + "if(matches.Get(0).Rooms>0){"
+		        + "subject=subject.replace(' y [Surface] m2','');"
+                + "}else{"
+  	            + "subject=subject.replace(' [Surface] m2','');"
+                + "}"
                 + "}"
                 + "subject=subject.replace('[Zone]',matches.Get(0).Zone);"
                 + "if(matches.Count() > 1){"
@@ -82,7 +86,7 @@ namespace ActiveScriptEnginePoc
         {
             AlertPropertyListWrapperForSubjectABTest alertProperties = new AlertPropertyListWrapperForSubjectABTest();
             AlertProperty alertProperty = new AlertProperty();
-            alertProperty.Rooms = 3;
+            //alertProperty.Rooms = 3;
             alertProperty.Surface = 100;
             alertProperty.Zone = "Barcelona Capital";
             alertProperty.PropertyType = 1;
