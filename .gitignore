@@ -1,0 +1,4 @@
+ActiveScriptEnginePoc/bin
+ActiveScriptEnginePoc/obj
+packages
+*.suo
