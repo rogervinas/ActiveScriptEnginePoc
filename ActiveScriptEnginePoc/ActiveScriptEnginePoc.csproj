@@ -60,6 +60,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SubjectScripts\SubjectScript2.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SubjectScripts\SubjectScript1.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
