@@ -11,27 +11,30 @@ namespace MailApi
 {
     public class ABTestSubjectHelper
     {
-
-        private static Dictionary<string, ActiveScriptEngine> subjectEngines = new Dictionary<string, ActiveScriptEngine>();
+        private static Dictionary<string, ActiveScriptEngine> engines = new Dictionary<string, ActiveScriptEngine>();
 
         private static ActiveScriptEngine GetEngine(string scriptBody)
         {
             ActiveScriptEngine engine;
-            if(!subjectEngines.ContainsKey(scriptBody)) {
-               engine = new ActiveScriptEngine("JScript");
-               engine.AddCode("function GetSubject(matches) { " + scriptBody + " }");
-               subjectEngines.Add(scriptBody, engine);
-            }else{
-                engine = subjectEngines[scriptBody];
+            if(!engines.ContainsKey(scriptBody)) {
+                engine = new SafeDisposableActiveScriptEngine("JScript");
+                engine.Start();
+                engine.AddCode("function GetSubject(matches) { " + scriptBody + " }");
+                engines.Add(scriptBody, engine);
+            } else {
+                engine = engines[scriptBody];
             }
             return engine;
+        }
+
+        public static void ClearEngines()
+        {
+            engines.Clear();
         }
 
         public static string GetSubject(List<AlertProperty> properties, string scriptBody)
         {
             ActiveScriptEngine engine = GetEngine(scriptBody);
-          
-            engine.Start();
 
             dynamic script = engine.GetScriptHandle();
 
@@ -54,8 +57,22 @@ namespace MailApi
                  result = null;
              }
 
-             return (result is string) ? (string)result : null;
-            
+             return (result is string) ? (string)result : null;            
+        }
+    }
+
+    public class SafeDisposableActiveScriptEngine : ActiveScriptEngine
+    {
+        public SafeDisposableActiveScriptEngine(string p) : base(p)
+        {
+        }
+
+        protected override void Dispose(bool managedDispose)
+        {
+            if (managedDispose)
+            {
+                base.Dispose(managedDispose);
+            }
         }
     }
 }
