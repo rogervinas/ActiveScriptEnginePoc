@@ -1,4 +1,4 @@
-﻿var base = '[PropertySubtype/PropertyTypeDescription] [Rooms] hab y [Surface] m2 en [Zone]';
+﻿var base = 'Nuevo: [PropertySubtype/PropertyTypeDescription] [Rooms] hab y [Surface] m2 en [Zone]';
 var endSingle = ', ¡date prisa!';
 var endMultiple = ' y más novedades, ¡date prisa!';
 var subject;
