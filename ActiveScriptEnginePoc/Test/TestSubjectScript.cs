@@ -11,22 +11,21 @@ namespace ActiveScriptEnginePoc
 {
     class TestSubjectScript
     {
-        public static string GetSubject(List<AlertProperty> properties, string scriptName)
+        public static string GetScript(string scriptName)
         {
             using (TextReader reader = new StreamReader(@"SubjectScripts\" + scriptName))
             {
-                string scriptBody = reader.ReadToEnd();
-                return ABTestSubjectHelper.GetSubject(properties, scriptBody);
+                return reader.ReadToEnd();
             }
         }
 
-        public static void TestSubject(List<AlertProperty> properties, string scriptName, string expectedSubject)
+        public static void TestSubject(List<AlertProperty> properties, string script, string expectedSubject, bool silent = false)
         {
-            string actualSubject = GetSubject(properties, scriptName);
+            string actualSubject = ABTestSubjectHelper.GetSubject(properties, script);
             if(expectedSubject.Equals(actualSubject)) {
-                Console.Out.WriteLine(String.Format("OK subject: {0}", actualSubject));
+                if(!silent) Console.Out.WriteLine(String.Format("OK subject: {0}", actualSubject));
             } else {
-                Console.Out.WriteLine(String.Format("KO subject: {0} | expected: {1}", actualSubject, expectedSubject));
+                if (!silent) Console.Out.WriteLine(String.Format("KO subject: {0} | expected: {1}", actualSubject, expectedSubject));
             }
         }
     }
